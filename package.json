@@ -1,0 +1,35 @@
+{
+  "name": "aws-js-library",
+  "author": {
+    "name": "Ben Kauffman",
+    "email": "ben@krashidbuilt.com",
+    "url": "https://www.krashidbuilt.com"
+  },
+  "copyright": "© KrashidBuilt 2021",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "fix": "echo \"Running linter...\" && yarn run lint --fix",
+    "test": "node test",
+    "bump": "$(npm bin)/bump --tag --commit && git push && git push --tags"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.17.0",
+    "eslint-plugin-prefer-arrow": "^1.2.2",
+    "pre-commit": "^1.2.2",
+    "version-bump-prompt": "^6.1.0"
+  },
+  "dependencies": {
+    "@KrashidBuilt/common": "github:https://github.com/krashidbuilt/common-js-library.git",
+    "@aws-sdk/client-s3": "^3.10.0",
+    "@aws-sdk/client-ssm": "^3.10.0",
+    "@aws-sdk/s3-request-presigner": "^3.10.0"
+  },
+  "pre-commit": [
+    "lint"
+  ]
+}
