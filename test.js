@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const Logger = require('@KrashidBuilt/common/utils/logger');
 
-const AWS = require('./utils/AWS');
+const AWS = require('./');
 const logger = new Logger(__filename);
 
 const main = async () => {
@@ -43,6 +43,28 @@ const main = async () => {
     await AWS.S3.removeFileFromBucket(Bucket, Key);
 
     await AWS.S3.removeBucket(Bucket);
+
+    // const db = new AWS.Dynamo('testing');
+    // // logger.info('create', await db.table.create());
+    // logger.info('describe', await db.table.describe());
+
+    // const one = String(new Date().getTime());
+    // await new Promise((resolve) => {
+    //     setTimeout(resolve, 100);
+    // });
+    // const two = String(new Date().getTime());
+
+    // await db.createOne(one, { first: 'Ben' });
+    // const update = { first: 'Ben', updated: new Date().getTime(), empty: '', und: undefined, n: null };
+    // await db.updateOne(one, update);
+    // await db.updateOne(one, update);
+
+    // // await db.createOne(two, { last: 'Kauffman' });
+
+    // // logger.info('get one', await db.getOne(one));
+    // // logger.info('get two', await db.getOne(two));
+
+    // // logger.info('get all', await db.getAll());
 };
 
 main();

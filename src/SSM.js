@@ -4,7 +4,7 @@ const { SSMClient, GetParametersByPathCommand, PutParameterCommand } = require('
 
 const Logger = require('@KrashidBuilt/common/utils/logger');
 
-const { AWS_DEFAULT_REGION } = require('../../constants');
+const { AWS_DEFAULT_REGION } = require('../constants');
 
 const logger = new Logger(__filename);
 const client = new SSMClient({ region: AWS_DEFAULT_REGION });

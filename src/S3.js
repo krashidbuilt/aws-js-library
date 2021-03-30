@@ -4,7 +4,7 @@ const { S3Client, CreateBucketCommand, DeleteBucketCommand, PutObjectCommand, Ge
 
 const Logger = require('@KrashidBuilt/common/utils/logger');
 
-const { AWS_DEFAULT_REGION } = require('../../constants');
+const { AWS_DEFAULT_REGION } = require('../constants');
 
 const logger = new Logger(__filename);
 

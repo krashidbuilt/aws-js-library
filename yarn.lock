@@ -3,8 +3,8 @@
 
 
 "@KrashidBuilt/common@github:https://github.com/krashidbuilt/common-js-library.git":
-  version "1.0.2"
-  resolved "https://codeload.github.com/krashidbuilt/common-js-library/tar.gz/76203c94cb582aa00f9b5ee95c1888a542f8e8ea"
+  version "1.0.3"
+  resolved "https://codeload.github.com/krashidbuilt/common-js-library/tar.gz/4757622fd8daf61cedf7e5b31ad19ed198dff794"
 
 "@aws-crypto/crc32@^1.0.0":
   version "1.0.0"
@@ -71,6 +71,45 @@
   integrity sha512-ls1uSef6k7xeVPUDbmainM3JvZFoc92q1K+6u1gMtju6koNNk+CM2cBV8qJ+R8/CM/pbeYgFDJvTvEzg7BkEfw==
   dependencies:
     tslib "^1.8.0"
+
+"@aws-sdk/client-dynamodb@^3.10.0":
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-dynamodb/-/client-dynamodb-3.10.0.tgz#6c701c7b221d1f5531c6c67062c3a8d096615f47"
+  integrity sha512-6y3qm33hIXOlr51u7v2OYoQhXTkaq/QuTLzjAayxK/g76xhKmVRDIlTkvjFTy5BX6H54Ysmp8zfUe1wviIqudw==
+  dependencies:
+    "@aws-crypto/sha256-browser" "^1.0.0"
+    "@aws-crypto/sha256-js" "^1.0.0"
+    "@aws-sdk/config-resolver" "3.10.0"
+    "@aws-sdk/credential-provider-node" "3.10.0"
+    "@aws-sdk/fetch-http-handler" "3.10.0"
+    "@aws-sdk/hash-node" "3.10.0"
+    "@aws-sdk/invalid-dependency" "3.10.0"
+    "@aws-sdk/middleware-content-length" "3.10.0"
+    "@aws-sdk/middleware-host-header" "3.10.0"
+    "@aws-sdk/middleware-logger" "3.10.0"
+    "@aws-sdk/middleware-retry" "3.10.0"
+    "@aws-sdk/middleware-serde" "3.10.0"
+    "@aws-sdk/middleware-signing" "3.10.0"
+    "@aws-sdk/middleware-stack" "3.10.0"
+    "@aws-sdk/middleware-user-agent" "3.10.0"
+    "@aws-sdk/node-config-provider" "3.10.0"
+    "@aws-sdk/node-http-handler" "3.10.0"
+    "@aws-sdk/protocol-http" "3.10.0"
+    "@aws-sdk/smithy-client" "3.10.0"
+    "@aws-sdk/types" "3.10.0"
+    "@aws-sdk/url-parser" "3.10.0"
+    "@aws-sdk/url-parser-native" "3.10.0"
+    "@aws-sdk/util-base64-browser" "3.10.0"
+    "@aws-sdk/util-base64-node" "3.10.0"
+    "@aws-sdk/util-body-length-browser" "3.10.0"
+    "@aws-sdk/util-body-length-node" "3.10.0"
+    "@aws-sdk/util-user-agent-browser" "3.10.0"
+    "@aws-sdk/util-user-agent-node" "3.10.0"
+    "@aws-sdk/util-utf8-browser" "3.10.0"
+    "@aws-sdk/util-utf8-node" "3.10.0"
+    "@aws-sdk/util-waiter" "3.10.0"
+    tslib "^2.0.0"
+    uuid "^3.0.0"
 
 "@aws-sdk/client-s3@^3.10.0":
   version "3.10.0"
@@ -705,6 +744,13 @@
     "@aws-sdk/middleware-stack" "3.10.0"
     "@aws-sdk/smithy-client" "3.10.0"
     "@aws-sdk/types" "3.10.0"
+    tslib "^1.8.0"
+
+"@aws-sdk/util-dynamodb@^3.10.0":
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-dynamodb/-/util-dynamodb-3.10.0.tgz#3c41deead8fa02f67a032f4a31cd0f8e63d5c4ca"
+  integrity sha512-YR90Me+66eK+A/zTvG+//ufsJmIlt/MUlbog1hXPkZ4nwb5UGb1sjoQpJxNGeDmmp5Szcj7Gx/1vxdl6Meu8/g==
+  dependencies:
     tslib "^1.8.0"
 
 "@aws-sdk/util-format-url@3.10.0":
@@ -1734,6 +1780,11 @@ lodash.flatten@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.flatten/-/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
   integrity sha1-8xwiIlqWMtK7+OSt2+8kCqdlph8=
+
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
 lodash.truncate@^4.4.2:
   version "4.4.2"
