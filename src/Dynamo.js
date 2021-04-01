@@ -2,13 +2,29 @@ const isEqual = require('lodash.isequal');
 const { DynamoDB, DynamoDBClient, CreateTableCommand, ListTablesCommand, DescribeTableCommand, DeleteTableCommand } = require('@aws-sdk/client-dynamodb');
 const { marshall, unmarshall } = require('@aws-sdk/util-dynamodb');
 
-const { AWS_DEFAULT_REGION, AWS_DYNAMO_ENDPOINT } = require('../constants');
+const { AWS_DEFAULT_REGION, AWS_DYNAMO_ENDPOINT, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../constants');
 
 const Logger = require('@KrashidBuilt/common/utils/logger');
 const logger = new Logger(__filename);
 
-const db = new DynamoDB({ endpoint: AWS_DYNAMO_ENDPOINT, region: AWS_DEFAULT_REGION, convertEmptyValues: true });
-const client = new DynamoDBClient({ endpoint: AWS_DYNAMO_ENDPOINT, region: AWS_DEFAULT_REGION });
+const config = {
+    region: AWS_DEFAULT_REGION,
+    endpoint: AWS_DYNAMO_ENDPOINT,
+};
+
+if (AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY) {
+    config.credentials = {
+        accessKeyId: AWS_ACCESS_KEY_ID,
+        secretAccessKey: AWS_SECRET_ACCESS_KEY
+    };
+}
+
+logger.info(config);
+
+const db = new DynamoDB({ ...config, convertEmptyValues: true });
+const client = new DynamoDBClient(config);
+
+new DynamoDBClient({});
 
 const marshallOptions = {
     // convertEmptyValues: true,
