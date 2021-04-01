@@ -2,13 +2,13 @@ const isEqual = require('lodash.isequal');
 const { DynamoDB, DynamoDBClient, CreateTableCommand, ListTablesCommand, DescribeTableCommand, DeleteTableCommand } = require('@aws-sdk/client-dynamodb');
 const { marshall, unmarshall } = require('@aws-sdk/util-dynamodb');
 
-const { AWS_DEFAULT_REGION } = require('../constants');
+const { AWS_DEFAULT_REGION, AWS_DYNAMO_ENDPOINT } = require('../constants');
 
 const Logger = require('@KrashidBuilt/common/utils/logger');
 const logger = new Logger(__filename);
 
-const db = new DynamoDB({ region: AWS_DEFAULT_REGION, convertEmptyValues: true });
-const client = new DynamoDBClient({ region: AWS_DEFAULT_REGION });
+const db = new DynamoDB({ endpoint: AWS_DYNAMO_ENDPOINT, region: AWS_DEFAULT_REGION, convertEmptyValues: true });
+const client = new DynamoDBClient({ endpoint: AWS_DYNAMO_ENDPOINT, region: AWS_DEFAULT_REGION });
 
 const marshallOptions = {
     // convertEmptyValues: true,
