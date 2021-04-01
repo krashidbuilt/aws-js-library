@@ -16,6 +16,13 @@ const marshallOptions = {
     // convertClassInstanceToMap: true,
 };
 
+const safeUnmarshall = (o) => {
+    if (o) {
+        return unmarshall(o);
+    }
+    return o;
+};
+
 class Dynamo {
     constructor(TableName) {
 
@@ -92,7 +99,7 @@ class Dynamo {
 
             do {
                 items = await db.scan(parameters);
-                items.Items.forEach((item) => results.push(unmarshall(item)));
+                items.Items.forEach((item) => results.push(safeUnmarshall(item)));
                 parameters.ExclusiveStartKey = items.LastEvaluatedKey;
             } while (typeof items.LastEvaluatedKey != 'undefined');
 
@@ -104,7 +111,7 @@ class Dynamo {
 
             try {
                 const { Item } = await db.getItem({ TableName, Key: marshall({ id }, marshallOptions) });
-                return unmarshall(Item);
+                return safeUnmarshall(Item);
             } catch (error) {
                 logger.error(error);
                 throw error;
@@ -146,7 +153,7 @@ class Dynamo {
                 obj.created_at = found.created_at;
                 obj.updated_at = found.updated_at;
 
-                const compare = unmarshall(marshall(obj, marshallOptions));
+                const compare = safeUnmarshall(marshall(obj, marshallOptions));
 
                 if (isEqual(found, compare)) {
                     logger.info('Ignoring update, identical values for', id);
