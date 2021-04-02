@@ -9,17 +9,15 @@ const logger = new Logger(__filename);
 
 const config = {
     region: AWS_DEFAULT_REGION,
-    endpoint: AWS_DYNAMO_ENDPOINT,
 };
 
-if (AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY) {
+if (AWS_DYNAMO_ENDPOINT && AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY) {
+    config.endpoint = AWS_DYNAMO_ENDPOINT;
     config.credentials = {
         accessKeyId: AWS_ACCESS_KEY_ID,
         secretAccessKey: AWS_SECRET_ACCESS_KEY
     };
 }
-
-logger.info(config);
 
 const db = new DynamoDB({ ...config, convertEmptyValues: true });
 const client = new DynamoDBClient(config);
