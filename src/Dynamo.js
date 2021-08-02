@@ -1,5 +1,5 @@
 const isEqual = require('lodash.isequal');
-const { DynamoDB, DynamoDBClient, CreateTableCommand, ListTablesCommand, DescribeTableCommand, DeleteTableCommand } = require('@aws-sdk/client-dynamodb');
+const { DynamoDB, DynamoDBClient, CreateTableCommand, ListTablesCommand, DescribeTableCommand, DeleteTableCommand, UpdateTimeToLiveCommand } = require('@aws-sdk/client-dynamodb');
 const { marshall, unmarshall } = require('@aws-sdk/util-dynamodb');
 
 const { AWS_DEFAULT_REGION, AWS_DYNAMO_ENDPOINT, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../constants');
@@ -98,6 +98,14 @@ class Dynamo {
                     throw error;
                 }
             },
+            updateTimeToLive: async (Enabled) => {
+                try {
+                    return await client.send(new UpdateTimeToLiveCommand({ TableName, TimeToLiveSpecification: { Enabled, AttributeName: 'expires' } }));
+                } catch (error) {
+                    logger.error(error);
+                    throw error;
+                }
+            }
         };
 
 
@@ -152,6 +160,8 @@ class Dynamo {
                 throw error;
             }
         };
+
+        this.createOneExpiring = async (id, obj, expiresInSeconds = 300) => await this.createOne(id, Object.assign(obj, { expires: String(Math.floor((Date.now() / 1000) + (expiresInSeconds))) }));
 
         this.updateOne = async (id, obj, get = false) => {
             logger.extra(id, obj, get);

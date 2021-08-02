@@ -44,9 +44,11 @@ const main = async () => {
 
     await AWS.S3.removeBucket(Bucket);
 
-    // const db = new AWS.Dynamo('testing');
-    // // logger.info('create', await db.table.create());
+    // const db = new AWS.Dynamo('bk-testing');
+    // logger.info('create', await db.table.create());
+    // logger.info('time to live', await db.table.updateTimeToLive(true));
     // logger.info('describe', await db.table.describe());
+    // await db.table.remove();
 
     // const one = String(new Date().getTime());
     // await new Promise((resolve) => {
