@@ -22,8 +22,6 @@ if (AWS_DYNAMO_ENDPOINT && AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY) {
 const db = new DynamoDB({ ...config, convertEmptyValues: true });
 const client = new DynamoDBClient(config);
 
-new DynamoDBClient({});
-
 const marshallOptions = {
     // convertEmptyValues: true,
     removeUndefinedValues: true,
@@ -44,6 +42,8 @@ class Dynamo {
             throw new Error('TableName is required!');
         }
 
+        this.db = db;
+        this.client = client;
         this.table = {
             create: async (idKey = 'id', idType = 'S') => {
                 try {
