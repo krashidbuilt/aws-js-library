@@ -1,5 +1,5 @@
 const isEqual = require('lodash.isequal');
-const { DynamoDB, DynamoDBClient, CreateTableCommand, ListTablesCommand, DescribeTableCommand, DeleteTableCommand, UpdateTimeToLiveCommand } = require('@aws-sdk/client-dynamodb');
+const { DynamoDB, DynamoDBClient, CreateTableCommand, ListTablesCommand, DescribeTableCommand, DeleteTableCommand, UpdateTimeToLiveCommand, waitForTableExists, waitForTableNotExists } = require('@aws-sdk/client-dynamodb');
 const { marshall, unmarshall } = require('@aws-sdk/util-dynamodb');
 
 const { AWS_DEFAULT_REGION, AWS_DYNAMO_ENDPOINT, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../constants');
@@ -105,7 +105,23 @@ class Dynamo {
                     logger.error(error);
                     throw error;
                 }
-            }
+            },
+            waitForExists: async (maxWaitTimeInSeconds = 900) => {
+                try {
+                    return await waitForTableExists({ client, maxWaitTime: maxWaitTimeInSeconds }, { TableName });
+                } catch (error) {
+                    logger.error(error);
+                    throw error;
+                }
+            },
+            waitForNotExists: async (maxWaitTimeInSeconds = 900) => {
+                try {
+                    return await waitForTableNotExists({ client, maxWaitTime: maxWaitTimeInSeconds }, { TableName });
+                } catch (error) {
+                    logger.error(error);
+                    throw error;
+                }
+            },
         };
 
 
