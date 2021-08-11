@@ -12,6 +12,7 @@ const config = {
 };
 
 if (AWS_DYNAMO_ENDPOINT && AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY) {
+    logger.info('Configuring manual credentials for dynamo');
     config.endpoint = AWS_DYNAMO_ENDPOINT;
     config.credentials = {
         accessKeyId: AWS_ACCESS_KEY_ID,
