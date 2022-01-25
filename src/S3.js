@@ -19,7 +19,7 @@ const getFileInfo = async (Bucket, Key) => {
         logger.error(error);
         throw error;
     }
-}
+};
 
 const checkBucketExists = async (Bucket) => {
     const options = {
