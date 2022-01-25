@@ -157,6 +157,27 @@ class Dynamo {
             }
         };
 
+        this.writeOne = async (id, obj, get = false) => {
+            logger.extra(id, obj, get);
+
+            try {
+                const Item = marshall(Object.assign(obj, {
+                    id,
+                    created_at: new Date().getTime(),
+                    updated_at: new Date().getTime(),
+                }), marshallOptions);
+
+                await db.putItem({ TableName, Item });
+
+                if (get) {
+                    return this.getOne(id);
+                }
+            } catch (error) {
+                logger.error(error);
+                throw error;
+            }
+        };
+
         this.createOne = async (id, obj, get = false) => {
             logger.extra(id, obj, get);
 
