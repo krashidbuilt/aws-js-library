@@ -33,16 +33,22 @@ const testS3 = async () => {
     const Bucket = `${APP_NAME}-test`;
     const Key = path.basename(__filename);
 
+    // await AWS.S3.checkBucketExists(Bucket);
+
     await AWS.S3.createBucket(Bucket);
 
     await AWS.S3.uploadFileToBucket(Bucket, Key, fs.readFileSync(__filename));
 
     logger.info(await AWS.S3.getSignedUrlForBucketKey(Bucket, Key));
 
+
+    logger.info(await AWS.S3.getFileInfo(Bucket, Key));
+
     logger.info('Sleeping');
     await new Promise((resolve) => {
         setTimeout(resolve, 5000);
     });
+
 
     await AWS.S3.removeFileFromBucket(Bucket, Key);
 
@@ -52,13 +58,13 @@ const testS3 = async () => {
 const testDynamo = async () => {
 
     const db = new AWS.Dynamo('bk-testing');
-    
+
     try {
         logger.info('create', await db.table.create());
     } catch (error) {
         logger.error('unable to create table', error);
     }
-    
+
     logger.info('wait for exists');
     logger.info('wait for exists', await db.table.waitForExists());
     logger.info('time to live', await db.table.updateTimeToLive(true));
@@ -91,8 +97,8 @@ const testDynamo = async () => {
 const main = async () => {
     // await testLogger();
     // await testSsm();
-    // await testS3();
-    await testDynamo();
+    await testS3();
+    // await testDynamo();
 };
 
 main();
