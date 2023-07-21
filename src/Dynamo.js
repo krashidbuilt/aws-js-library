@@ -19,7 +19,7 @@ if (AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY) {
     };
 }
 
-if (AWS_DEFAULT_REGION) {
+if (AWS_DYNAMO_ENDPOINT) {
     logger.info('Configuring manual endpoint for dynamo');
     config.endpoint = AWS_DYNAMO_ENDPOINT;
 }
