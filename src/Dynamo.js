@@ -9,15 +9,20 @@ const logger = new Logger(__filename);
 
 const config = {
     region: AWS_DEFAULT_REGION,
+
 };
 
-if (AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY && AWS_SESSION_TOKEN) {
+if (AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY) {
     logger.info('Configuring manual credentials for dynamo');
     config.credentials = {
         accessKeyId: AWS_ACCESS_KEY_ID,
         secretAccessKey: AWS_SECRET_ACCESS_KEY,
-        sessionToken: AWS_SESSION_TOKEN
     };
+
+    if (AWS_SESSION_TOKEN) {
+        logger.info('Configuring manual session token for dynamo');
+        config.credentials.sessionToken = AWS_SESSION_TOKEN;
+    }
 }
 
 if (AWS_DYNAMO_ENDPOINT) {
