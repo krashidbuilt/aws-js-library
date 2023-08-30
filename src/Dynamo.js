@@ -2,7 +2,7 @@ const isEqual = require('lodash.isequal');
 const { DynamoDB, DynamoDBClient, CreateTableCommand, ListTablesCommand, DescribeTableCommand, DeleteTableCommand, UpdateTimeToLiveCommand, waitForTableExists, waitForTableNotExists } = require('@aws-sdk/client-dynamodb');
 const { marshall, unmarshall } = require('@aws-sdk/util-dynamodb');
 
-const { AWS_DEFAULT_REGION, AWS_DYNAMO_ENDPOINT, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../constants');
+const { AWS_DEFAULT_REGION, AWS_DYNAMO_ENDPOINT, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN } = require('../constants');
 
 const Logger = require('@KrashidBuilt/common/utils/logger');
 const logger = new Logger(__filename);
@@ -11,11 +11,12 @@ const config = {
     region: AWS_DEFAULT_REGION,
 };
 
-if (AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY) {
+if (AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY && AWS_SESSION_TOKEN) {
     logger.info('Configuring manual credentials for dynamo');
     config.credentials = {
         accessKeyId: AWS_ACCESS_KEY_ID,
-        secretAccessKey: AWS_SECRET_ACCESS_KEY
+        secretAccessKey: AWS_SECRET_ACCESS_KEY,
+        sessionToken: AWS_SESSION_TOKEN
     };
 }
 
